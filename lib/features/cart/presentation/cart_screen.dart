@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopping_example/common/presentation/shopping_provider.dart';
+import 'package:provider_shopping_example/common/presentation/product_model.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<ShoppingProvider>();
+    final productModel = context.watch<ProductModel>();
 
     return Scaffold(
       appBar: AppBar(
@@ -15,9 +15,14 @@ class CartScreen extends StatelessWidget {
       ),
       body: Center(
         child: ListView.builder(
-          itemCount: provider.selectedItems.length,
+          itemCount: productModel.selectedItems.length,
           itemBuilder: (context, index) => ListTile(
-            title: Text(provider.selectedItems[index]),
+            title: Text(productModel.selectedItems[index]),
+            trailing: IconButton(
+              icon: const Icon(Icons.remove_circle_outline),
+              onPressed: () =>
+                  productModel.remove(productModel.selectedItems[index]),
+            ),
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopping_example/common/presentation/shopping_provider.dart';
+import 'package:provider_shopping_example/common/presentation/product_model.dart';
 import 'package:provider_shopping_example/features/cart/presentation/cart_screen.dart';
 
 class ShoppingMainScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class ShoppingMainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Getränke für Batch #3"),
         actions: [
-          Text("${context.watch<ShoppingProvider>().selectedItems.length}"),
+          Text("${context.watch<ProductModel>().selectedItems.length}"),
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -25,15 +25,15 @@ class ShoppingMainScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Consumer<ShoppingProvider>(
-          builder: (context, provider, child) => ListView.builder(
-            itemCount: provider.allItems.length,
+        child: Consumer<ProductModel>(
+          builder: (context, model, child) => ListView.builder(
+            itemCount: model.allItems.length,
             itemBuilder: (context, index) => ListTile(
-              title: Text(provider.allItems[index]),
+              title: Text(model.allItems[index]),
               trailing: IconButton(
                 icon: const Icon(Icons.add_shopping_cart_sharp),
                 onPressed: () {
-                  provider.add(provider.allItems[index]);
+                  model.add(model.allItems[index]);
                 },
               ),
             ),
