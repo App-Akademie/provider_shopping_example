@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopping_example/common/presentation/product_model.dart';
+import 'package:provider_shopping_example/common/presentation/products.dart';
 import 'package:provider_shopping_example/features/main_screen/presentation/shopping_main_screen.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => ProductModel(),
-    child: const MainApp(),
-  ));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Products(),
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {

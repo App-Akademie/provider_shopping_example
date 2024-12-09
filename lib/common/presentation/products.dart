@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// In der Folien-Architektur ist der Provider ein "Controller".
-class ProductModel extends ChangeNotifier {
+class Products extends ChangeNotifier {
   final List<String> _selectedItems = [];
   final List<String> _allItems = [
     "Cola",
